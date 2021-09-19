@@ -1,8 +1,8 @@
 # Test against this version of Node.js
 environment:
   matrix:
-  # node.js
-  - nodejs_version: "14"
+    # node.js
+    - nodejs_version: "14"
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -12,12 +12,12 @@ install:
   - npm install
 
   # Post-install test scripts.
-  test_script:
-    # Output useful info for debugging.
-    - node --version
-    - npm --version
-    # run tests
-    - npm test
+test_script:
+  # Output useful info for debugging.
+  - node --version
+  - npm --version
+  # run tests
+  - npm test
 
-  # Don't actually build.
-  build: off
+# Don't actually build.
+build: off
