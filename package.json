@@ -4,15 +4,17 @@
   "description": "JavaScript development environment Pluralsight course by Cory House",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
+    "start": "npm-run-all --parallel open:src lint:watch test:watch start-mockapi",
     "open:src": "babel-node buildScripts/srcServer.js",
     "localtunnel": "lt --port 3000",
     "share": "npm-run-all --parallel start localtunnel",
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
-    "security-check": "nsp check",
     "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "generate-mock-data": "babel-node buildScripts/generateMockData",
+    "prestart-mockapi": "npm run generate-mock-data",
+    "start-mockapi": "json-server --watch src/api/db.json --port 3001"
   },
   "author": "Torrey Meade",
   "license": "MIT",
@@ -20,7 +22,7 @@
     "whatwg-fetch": "3.6.2"
   },
   "devDependencies": {
-    "@babel/cli": "7.13.0",
+    "@babel/cli": "^7.15.7",
     "@babel/core": "7.13.8",
     "@babel/node": "^7.13.0",
     "@babel/preset-env": "7.13.8",
@@ -28,7 +30,7 @@
     "babel-loader": "8.2.2",
     "chai": "4.3.0",
     "chalk": "4.1.0",
-    "cheerio": "1.0.0-rc.5",
+    "cheerio": "^1.0.0-rc.10",
     "compression": "1.7.4",
     "cross-env": "7.0.3",
     "css-loader": "5.1.0",
