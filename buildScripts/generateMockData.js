@@ -5,6 +5,7 @@
 */
 
 /* eslint-disable no-console */
+/* eslint-disable import/named */
 
 import { generate, extend } from "json-schema-faker";
 import { schema } from "./mockDataSchema";
